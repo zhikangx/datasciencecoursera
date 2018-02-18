@@ -1,0 +1,28 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518983484055.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4D6E0D48",
+    "lastKnownWriteTime" : 4520542216,
+    "last_content_update" : 1518983484055,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "crg9pvqg2y",
+        "caption" : "data_EDSTATS_Country",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=data_EDSTATS_Country&cache_key=crg9pvqg2y",
+        "displayedObservations" : 235,
+        "environment" : "",
+        "object" : "data_EDSTATS_Country",
+        "totalObservations" : 235,
+        "variables" : 31
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
