@@ -1,19 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "\n# Step 1 \n## Merges the training and the test sets to create one data set.\n\nsubject_test_data <- read.table(\"UCI HAR Dataset/test/subject_test.txt\", quote=\"\\\"\", comment.char=\"\")\nx_test_data <- read.table(\"UCI HAR Dataset/test/X_test.txt\", quote=\"\\\"\", comment.char=\"\")\ny_test_data <- read.table(\"UCI HAR Dataset/test/Y_test.txt\", quote=\"\\\"\", comment.char=\"\")\n\nsubject_train_data <- read.table(\"UCI HAR Dataset/train/subject_train.txt\", quote=\"\\\"\", comment.char=\"\")\nx_train_data <- read.table(\"UCI HAR Dataset/train/X_train.txt\", quote=\"\\\"\", comment.char=\"\")\ny_train_data <- read.table(\"UCI HAR Dataset/train/Y_train.txt\", quote=\"\\\"\", comment.char=\"\")\n\ntest_data <- cbind(subject_test_data, y_test_data, x_test_data)\n\nnames(test_data)[1] <- \"id\"\nnames(test_data)[2] <- \"label\"\n\ntrain_data <- cbind(subject_train_data, y_train_data, x_train_data)\nnames(train_data)[1] <- \"id\"\nnames(train_data)[2] <- \"label\"\n\ndata <- rbind(test_data, train_data)\n\n# Step 2\n## Extracts only the measurements on the mean and standard deviation for each measurement.\n\nfeature <- read.table(\"UCI HAR Dataset/features.txt\", quote=\"\\\"\", comment.char=\"\")\nfeature$extract = grepl(\"mean|std\", feature$V2)\nfeature$extract_index <- as.numeric(rownames(feature))+2\nfeature_index_extract <- feature[feature$extract == TRUE,]$extract_index\ncol_index <- c(1,2, feature_index_extract)\n\ndata_extracted <- data[col_index]\n\n# Step 3\n## Uses descriptive activity names to name the activities in the data set\n\nact_name <- read.table(\"UCI HAR Dataset/activity_labels.txt\", quote=\"\\\"\", comment.char=\"\")\nact_name[,2] <-c(\"WLK\",\"WLK_UP\",\"WLK_DW\",\"SIT\",\"STD\",\"LAY\") \nfor ( index in act_name[,1] ) {\n  data_extracted$label <- gsub(as.character(index),act_name[index,2],as.character(data_extracted$label))\n}\n\n# Step 4\n## Appropriately labels the data set with descriptive variable names.\n\nvrb_name <- read.table(\"UCI HAR Dataset/features.txt\", quote=\"\\\"\", comment.char=\"\")\n\n## replace the full activity name with the describe name\n\nvrb_name$V2 <- gsub(\"mean\",\"m\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"Mean\",\"M\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"Body\",\"B\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"Acc\",\"A\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"Gravity\",\"G\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"Jerk\",\"Jk\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"entropy\",\"etr\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"correlation\",\"corr\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"energy\",\"erg\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"correlation\",\"corr\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"arCoeff\",\"aCoe\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"Gyro\",\"Gy\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"skewness\",\"skw\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"bandsEnergy\",\"bdE\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"angle\",\"agl\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"gravity\",\"grvt\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"[()]\", \"\",as.character(vrb_name$V2))\nvrb_name$V2 <- gsub(\"-\", \"_\",as.character(vrb_name$V2))\n\n## replace the column name with descriptive activity name\ncolnames(data_extracted) = gsub(\"V\", \"\", colnames(data_extracted))\nfor ( index in vrb_name[,1] ) {\n  colnames(data_extracted) <- gsub(as.character(index),vrb_name[index,2],as.character(colnames(data_extracted)))\n}\n\n# Step 5\n## From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.\n\ndata_extracted_sum <- aggregate(.~id+label, data=data_extracted, FUN = mean)\n\nwrite.table(data_extracted_sum, row.name=FALSE, file = \"tidy_data_set.txt\" )\n   ",
-    "created" : 1518913494758.000,
+    "created" : 1518928668445.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "155386406",
-    "id" : "330F505E",
+    "id" : "E0D8F07",
     "lastKnownWriteTime" : 1518928208,
-    "last_content_update" : 1518928208033,
+    "last_content_update" : 1518928208,
     "path" : "~/Documents/datasciencecoursera/Data Cleaning/run_analysis.R",
     "project_path" : "run_analysis.R",
     "properties" : {
     },
-    "relative_order" : 2,
+    "relative_order" : 1,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"
