@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# loading and formatting the data\ndata <- read.table(\"data/household_power_consumption.txt\", quote=\"\\\"\", comment.char=\"\", sep = \";\", header = TRUE)\ndata$Date <- as.Date(data$Date,format = \"%d/%m/%Y\")\ndata[,3:9] <- lapply(data[,3:9],as.character)\ndata[,3:9] <- lapply(data[,3:9],as.numeric)\n\n## setting the target period\ndate_target <- c(\"01/02/2007\",\"02/02/2007\")\ndate_target <- as.Date(date_target, format = \"%d/%m/%Y\")\n\n## filtering data\ndata_used <- data[data$Date %in% date_target, ]\n\n# get the time info\ndate_and_time <- paste(as.character(data_used$Date), as.character(data_used$Time), sep=\" \")\ndatetime <- strptime(date_and_time, \"%Y-%m-%d %H:%M:%S\") \n\n# plot\ndate_and_time <- paste(as.character(data_used$Date), as.character(data_used$Time), sep=\" \")\ndatetime <- strptime(date_and_time, \"%Y-%m-%d %H:%M:%S\") \n\npng(\"plot2.png\", width=480, height=480)\nplot(datetime, data_used[,3],type=\"l\", xlab=\"\", ylab=\"Global Active Power (kilowatts)\")\ndev.off()",
+    "created" : 1519096309936.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3129136981",
+    "id" : "BECFFF87",
+    "lastKnownWriteTime" : 1519096381,
+    "last_content_update" : 1519096381143,
+    "path" : "~/Documents/datasciencecoursera/EDA/Week1/plot2.R",
+    "project_path" : "plot2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
