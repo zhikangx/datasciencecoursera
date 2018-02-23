@@ -21,7 +21,7 @@ data <- data[!is.na(data$steps),]
 
 ## What is mean total number of steps taken per day?
 
-```{r calculating the mean total number of daily steps}
+```{r histogram}
 total_steps_daily <- aggregate(as.numeric(data$steps), by=list(data$date), FUN=sum, na.rm=TRUE)
 names(total_steps_daily) <- c("date","steps")
 hist(total_steps_daily$steps, xlab = "Steps", main = "Total Daily Steps Distribution")
@@ -33,7 +33,7 @@ The mean and median of the total number of steps taken per day are `r total_step
 
 ## What is the average daily activity pattern?
 
-```{r calculating the average daily activity patterns}
+```{r daily, fig.width=12}
 library(plyr)
 average_steps_interval <- ddply(data, .(interval), summarize, Avg = mean(steps))
 names(average_steps_interval) <- c("Interval","Average steps")
@@ -49,7 +49,7 @@ The 5-minute interval, on average across all the days in the dataset, that conta
 
 ## Imputing missing values
 
-```{r imputing nas}
+```{r na_imputing, cache=TRUE}
 data2 <- read.csv("activity.csv")
 data2$date <- as.Date(data2$date, format = "%Y-%m-%d")
 count_na_val <- sum(is.na(data2$steps))
@@ -70,7 +70,7 @@ mergeData <- rbind(clean, newdata2)
 
 The total number of missing values in the dataset are `r count_na_val` rows. The strategy of replacing NAs is using the mean value for the corresponding 5-minute interval in this study. The modified data is stored in the new dataframe named "data2".
 
-```{r recalculating the mean total number of daily steps with NA replacement}
+```{r histogram_replace_NAs}
 total_steps_daily_2 <- aggregate(as.numeric(mergeData$steps), by=list(data2$date), FUN=sum, na.rm=TRUE)
 names(total_steps_daily_2) <- c("date","steps")
 total_steps_mean_2 <- mean(total_steps_daily_2$steps)
@@ -92,7 +92,7 @@ madian      | `r total_steps_median`     |  `r total_steps_median_2`
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r recalculating differences in activity patterns between weekdays and weekends}
+```{r weekend_comparison, cache=TRUE, fig.width=10}
 mergeData$day <- weekdays(as.Date(mergeData$date))
 mergeData$DateTime<- as.POSIXct(mergeData$date, format="%Y-%m-%d")
 mergeData$DayCategory <- ifelse(mergeData$day %in% c("Saturday", "Sunday"), "Weekend", "Weekday")

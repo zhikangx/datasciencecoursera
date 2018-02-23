@@ -30,7 +30,7 @@ names(total_steps_daily) <- c("date","steps")
 hist(total_steps_daily$steps, xlab = "Steps", main = "Total Daily Steps Distribution")
 ```
 
-![](PA1_template_files/figure-html/calculating the mean total number of daily steps-1.png)<!-- -->
+![](PA1_template_files/figure-html/histogram-1.png)<!-- -->
 
 ```r
 total_steps_mean <- mean(total_steps_daily$steps)
@@ -50,7 +50,7 @@ names(average_steps_interval) <- c("Interval","Average steps")
 plot(average_steps_interval,type = "l", main = "Average Number of Steps per 5-minute Interval")
 ```
 
-![](PA1_template_files/figure-html/calculating the average daily activity patterns-1.png)<!-- -->
+![](PA1_template_files/figure-html/daily-1.png)<!-- -->
 
 ```r
 interval_max_steps <- max(average_steps_interval$`Average steps`)
@@ -95,7 +95,7 @@ hist(total_steps_daily$steps, breaks=5, xlab="Steps", main = "Total Steps per Da
 legend("topright", c("Imputed Data", "Non-NA Data"), fill=c("black", "grey") )
 ```
 
-![](PA1_template_files/figure-html/recalculating the mean total number of daily steps with NA replacement-1.png)<!-- -->
+![](PA1_template_files/figure-html/histogram_replace_NAs-1.png)<!-- -->
 
 The mean and median of the total number of steps taken per day with NA replacement are 1.0766189\times 10^{4} and 1.1015\times 10^{4}, respectively. The comparison between with NA replacement and without NA replacement is shown below. The overall shape of the distribution has not changed.
 
@@ -119,6 +119,6 @@ xyplot(Avg~interval|DayCategory, data=steps_daytype, type="l",  layout = c(1,2),
        ylab="Average Steps", xlab="Interval")
 ```
 
-![](PA1_template_files/figure-html/recalculating differences in activity patterns between weekdays and weekends-1.png)<!-- -->
+![](PA1_template_files/figure-html/weekend_comparison-1.png)<!-- -->
        
 According to the plot above, people tend to walk more steps at weekend. It is probably because people have more free time at the weekend for outdoor activities.
