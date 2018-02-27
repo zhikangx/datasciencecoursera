@@ -1,15 +1,16 @@
 ---
 title: "Statistical Inference Course Project Part 2"
 author: "Zhikang Xu"
-output: 
+output:
   html_document:
-    theme: united
     highlight: tango
-    toc: true
-    toc_float: true
-    keep_md: true
+    keep_md: yes
     number_sections: yes
-    
+    theme: united
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
 ---
 
 
@@ -144,7 +145,7 @@ ggplot(aes(x=supp, y=len), data=ToothGrowth) + geom_boxplot(aes(fill=supp)) + xl
 
 This graph shows the relationship between tooth length and supplement delivery method. When the dose amount is at 0.5 and 1.0, supplement delivery of "OJ" has a stronger positive effect of tooth length. However, this effect is minor when the dose amount is at 2.0.
 
-
+## t-test
 
 ```r
 t.test(len~supp,data=ToothGrowth)

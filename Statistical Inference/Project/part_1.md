@@ -1,21 +1,23 @@
 ---
-title: "Simulation Exercise part 1"
-output: 
+title: "Statistical Inference Course Project Part 1"
+author: "Zhikang Xu"
+output:
   html_document:
-    theme: united
     highlight: tango
-    toc: true
-    toc_float: true
-    keep_md: true
+    keep_md: yes
     number_sections: yes
-    
+    theme: united
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
 ---
 
 
 
 # Overview
 
-This is the first part of the Statistical Inference Course Project from Coursera. It is demonstrated that the distribution proves the Central Limit Theorem. After graphing all the values above and comparing the confidence intervals the distribution is approximately normal.
+This is the first part of the Statistical Inference Course Project from Coursera. It is demonstrated that the distribution proves the Central Limit Theorem. This assignment will make calculation and plots and compare confidence intervals, and eventually proves that the distribution is approximately normal.
 
 # Tasks
 
@@ -85,7 +87,7 @@ m
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![](main_files/figure-html/plotting-1.png)<!-- -->
+![](part_1_files/figure-html/plotting-1.png)<!-- -->
 
 The density of the actual data is shown by the light blue bars. The theoretical mean and the sample mean are so close that they nearly overlap. The “red” line shows the normal curve formed by the the theoretical mean and standard deviation. The “gold” line shows the curve formed by the sample mean and standard deviation. As you can see from the graph, the distribution of means of 40 exponential distributions is close to the normal distribution with the expected theoretical values based on the given lambda.
 
